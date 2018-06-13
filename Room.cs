@@ -36,11 +36,6 @@ namespace ZuulCS
 			return description;
 		}
 
-        public string printLongDescription()
-        {
-            return getLongDescription();
-        }
-
 		/**
 	     * Return a long description of this room, in the form:
 	     *     You are in the kitchen.

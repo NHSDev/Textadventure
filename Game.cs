@@ -141,6 +141,12 @@ namespace ZuulCS
 			parser.showCommands();
 		}
 
+        private void printLongDiscription()
+        {
+            string discription = player.currentroom.getLongDescription();
+            Console.WriteLine(discription);
+        }
+
 		/**
 	     * Try to go to one direction. If there is an exit, enter the new
 	     * room, otherwise print an error message.
@@ -156,13 +162,13 @@ namespace ZuulCS
 			string direction = command.getSecondWord();
 
 			// Try to leave current room.
-			Room nextRoom = currentRoom.getExit(direction);
+			Room nextRoom = player.currentRoom.getExit(direction);
 
 			if (nextRoom == null) {
 				Console.WriteLine("There is no door to "+direction+"!");
 			} else {
-				currentRoom = nextRoom;
-				Console.WriteLine(currentRoom.getLongDescription());
+				player.currentRoom = nextRoom;
+				Console.WriteLine(player.currentRoom.getLongDescription());
 			}
 		}
 

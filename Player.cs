@@ -6,15 +6,32 @@ namespace ZuulCS
     {
         private Room _currentRoom;
         private int health;
-        private uint damage;
 
         public Room currentRoom {
             get { return _currentRoom; }
             set { _currentRoom = value; }
         }
 
-        private void Damage() { 
+        public uint damage(uint amount) {
+            this.health -= amount;
+            return this.health;
+        }
 
+        public uint heal(uint amount)
+        {
+            this.health += amount;
+            return this.health;
+        }
+
+        public bool isAlive()
+        {
+            if(this.health < 1)
+            {
+                return false;
+            } else
+            {
+                return true;
+            }
         }
     }
 }
