@@ -7,6 +7,8 @@ namespace ZuulCS
 	{
 		private string description;
 		private Dictionary<string, Room> exits; // stores exits of this room.
+        private Inventory inventory;
+        internal Inventory Inventory { get => inventory; }
 
 		/**
 	     * Create a room described "description". Initially, it has no exits.
@@ -15,6 +17,7 @@ namespace ZuulCS
 	     */
 		public Room(string description)
 		{
+            inventory = new Inventory();
 			this.description = description;
 			exits = new Dictionary<string, Room>();
 		}
@@ -83,5 +86,17 @@ namespace ZuulCS
 			}
 
 		}
-	}
+
+/*
+        public void addItem(string name, Item item)
+        {
+            inventory.addItem(name, item);
+        }
+
+        public void removeItem(string name, Item item)
+        {
+            inventory.removeItem(name, item);
+        }
+*/
+    }
 }

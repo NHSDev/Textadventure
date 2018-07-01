@@ -6,18 +6,33 @@ namespace ZuulCS
     {
         private Room _currentRoom;
         private int health;
+        private Inventory inventory;
+        internal Inventory Inventory { get => inventory; }
+
+        public Player()
+        {
+            inventory = new Inventory();
+            health = 10;
+        }
+
+
+        public int getHealth
+        {
+            get { return health; }
+        }
+
 
         public Room currentRoom {
             get { return _currentRoom; }
             set { _currentRoom = value; }
         }
 
-        public uint damage(uint amount) {
+        public int damage(int amount) {
             this.health -= amount;
             return this.health;
         }
 
-        public uint heal(uint amount)
+        public int heal(int amount)
         {
             this.health += amount;
             return this.health;
@@ -25,7 +40,7 @@ namespace ZuulCS
 
         public bool isAlive()
         {
-            if(this.health < 1)
+            if(health < 1)
             {
                 return false;
             } else
@@ -33,5 +48,17 @@ namespace ZuulCS
                 return true;
             }
         }
+
+
+        public void setItem(string name, Item item)
+        {
+            inventory.addItem(name, item);
+        }
+
+        public void removeItem(string name, Item item)
+        {
+            inventory.removeItem(name, item);
+        }
+
     }
 }

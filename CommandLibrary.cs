@@ -16,7 +16,10 @@ namespace ZuulCS
 				"go",
 				"quit",
 				"help",
-                "look"
+                "look",
+                "pickup",
+                "drop",
+                "use"
 			};
 		}
 
