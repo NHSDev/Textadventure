@@ -9,6 +9,8 @@ namespace ZuulCS
     {
         private Dictionary<string, Item> items;
 
+        internal Dictionary<string, Item> Items { get => items; }
+
         public Inventory()
         {
             items = new Dictionary<string, Item>();

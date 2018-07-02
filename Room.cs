@@ -46,10 +46,16 @@ namespace ZuulCS
 	     */
 		public string getLongDescription()
 		{
-			string returnstring = "You are ";
+			string returnstring = "";
 			returnstring += description;
-			returnstring += ".\n";
-			returnstring += getExitstring();
+			returnstring += "\n";
+            returnstring += "\n";
+            returnstring += inventory.displayItems();
+            returnstring += "\n";
+            returnstring += "\n";
+            returnstring += getExitstring();
+            
+
 			return returnstring;
 		}
 
@@ -87,7 +93,7 @@ namespace ZuulCS
 
 		}
 
-/*
+
         public void addItem(string name, Item item)
         {
             inventory.addItem(name, item);
@@ -97,6 +103,6 @@ namespace ZuulCS
         {
             inventory.removeItem(name, item);
         }
-*/
+
     }
 }

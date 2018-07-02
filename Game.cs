@@ -17,60 +17,40 @@ namespace ZuulCS
 
 		private void createRooms()
 		{
-			Room outside, theatre, pub, lab, office, hallway, hallway2, room101, room201;
+            Room entrance,cave001,cave002;
             Item apple;
 
 			// create the rooms
-			outside = new Room("outside the main entrance of the university");
-			theatre = new Room("in a lecture theatre");
-			pub = new Room("in the campus pub");
-			lab = new Room("in a computing lab");
-			office = new Room("in the computing admin office");
-            hallway = new Room("in the groundfloor hallway");
-            hallway2 = new Room("on the first floor in the hallway");
-            room101 = new Room("in a room that is almost empty, there is only a chair in the middle of the room");
-            room201 = new Room("in normal a students room, its really dirty (better get out of here)");
+			entrance = new Room("I fell down into this cave, there's is no climbing back up from this!");
+            cave001 = new Room("you walk down a dimly lit cave, you see a turn to the left.");
+            cave002 = new Room("");
 
             //create the items
             apple = new Apple();
 
 
-			// initialise room exits
-			outside.setExit("east", hallway);
-			outside.setExit("south", lab);
-			outside.setExit("west", pub);
+            // initialise room exits
+            entrance.setExit("north", cave001);
 
-            hallway.setExit("west", outside);
-            hallway.setExit("east", theatre);
-            hallway.setExit("up", hallway2);
-
-            hallway2.setExit("down", hallway);
-            hallway2.setExit("east", room101);
-            hallway2.setExit("west", room201);
-
-            room101.setExit("west", hallway2);
-
-            room201.setExit("east", hallway2);
-
-			theatre.setExit("west", hallway2);
-
-			pub.setExit("east", outside);
-
-			lab.setExit("north", outside);
-			lab.setExit("east", office);
-
-			office.setExit("west", lab);
+            cave001.setExit("west", cave002);
 
             //add items to room
-            //outside.addItem("apple", apple);
+            entrance.addItem("apple", apple);
 
-			player.currentRoom = outside;  // start game outside
+			player.currentRoom = entrance;  // start game outside
 		}
 
-        //public string itemRoom()
-        //{
-            //return
-        //}
+        public void takeItem(Command command)
+        {
+            if(!command.hasSecondWord())
+            {
+                if(player.currentRoom.Inventory.Items.Count < 0)
+                {
+                    Item currentItem = player.currentRoom.Inventory.Items;
+                    player.currentRoom.Inventory.addItem(player.Inventory, currentItem.name);
+                }
+            }
+        }
 
         public void takeItem(string name, Item item)
         {
@@ -114,13 +94,22 @@ namespace ZuulCS
 		private void printWelcome()
 		{
             Console.WriteLine("");
-            Console.WriteLine("########################################################");
+            Console.WriteLine("01111001 11010010 00100000 01001111 00000111 11100000 ");
             Console.WriteLine("");
-            Console.WriteLine("Welcome to Dorn");
-			Console.WriteLine("Dorn is a old, incredibly boring adventure game.");
-			Console.WriteLine("Type 'help' if you need help.");
+            Console.WriteLine("00011101 00010101 00100011 00111000 11100001");
+            Console.WriteLine("00001100                            00001101");
+            Console.WriteLine("00001100      Welcome Player-77     00001101");
+            Console.WriteLine("00001100                            00001101");
+            Console.WriteLine("10110001 10111110 10100111 11000010 01011000");
             Console.WriteLine("");
-            Console.WriteLine("########################################################");
+            Console.WriteLine("");
+            Console.WriteLine(" # Where am I???");
+            Console.WriteLine(" # I need to find help!");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine(" # Tip: type 'help' ");
+            Console.WriteLine("");
+            Console.WriteLine("00101101 00001100 10100110 00100100 11111001 10111100 ");
             Console.WriteLine("");
 		}
 
@@ -135,11 +124,11 @@ namespace ZuulCS
 
 			if(command.isUnknown()) {
                 Console.WriteLine("");
-                Console.WriteLine("########################################################");
+                Console.WriteLine("11010010 11000011 11101010 00101101 10010001 10101000");
                 Console.WriteLine("");
-                Console.WriteLine("I don't know what you mean...");
+                Console.WriteLine(" # I don't know what you mean...");
                 Console.WriteLine("");
-                Console.WriteLine("########################################################");
+                Console.WriteLine("00100111 00100011 11111101 01011011 10011011 11111000 ");
                 Console.WriteLine("");
                 return false;
 			}
@@ -179,16 +168,17 @@ namespace ZuulCS
 		private void printHelp()
 		{
             Console.WriteLine("");
-            Console.WriteLine("########################################################");
+            Console.WriteLine("01000001 11011010 00001100 11001101 00110011 10101101 ");
             Console.WriteLine("");
-            Console.WriteLine("You are lost. Injured and alone.");
-			Console.WriteLine("You wander around at the university.");
-            Console.WriteLine("You need to find help!");
-			Console.WriteLine();
-			Console.WriteLine("Your command words are:");
-			parser.showCommands();
+            Console.WriteLine(" # You are lost and you don't feel so good,");
+            Console.WriteLine(" # Your leg has a big cut and you are bleeding.");
+            Console.WriteLine(" # Seems like you are somekind of weird cave,");
+            Console.WriteLine(" # You need to find some help!");
+			Console.WriteLine("");
+			Console.WriteLine(" # Your command words are:");
+            parser.showCommands();
             Console.WriteLine("");
-            Console.WriteLine("########################################################");
+            Console.WriteLine("01101001 11010101 11000001 11111000 01001000 11111101 ");
             Console.WriteLine("");
         }
 
@@ -196,11 +186,11 @@ namespace ZuulCS
         {
             string discription = player.currentRoom.getLongDescription();
             Console.WriteLine("");
-            Console.WriteLine("########################################################");
+            Console.WriteLine("10000100 00100101 01000100 00001110 11111010 01111000 ");
             Console.WriteLine("");
-            Console.WriteLine(discription);
+            Console.WriteLine(" # " + discription);
             Console.WriteLine("");
-            Console.WriteLine("########################################################");
+            Console.WriteLine("00000000 10100000 01111110 01101001 00001010 10010100 ");
             Console.WriteLine("");
         }
 
@@ -213,11 +203,11 @@ namespace ZuulCS
 			if(!command.hasSecondWord()) {
                 // if there is no second word, we don't know where to go...
                 Console.WriteLine("");
-                Console.WriteLine("########################################################");
+                Console.WriteLine("00111110 00100111 10101101 00001101 11111010 10001010 ");
                 Console.WriteLine("");
-                Console.WriteLine("Go where?");
+                Console.WriteLine(" # Go where?");
                 Console.WriteLine("");
-                Console.WriteLine("########################################################");
+                Console.WriteLine("10001000 11010110 11100100 10101011 11110000 10111110 ");
                 Console.WriteLine("");
                 return;
 			}
@@ -229,22 +219,22 @@ namespace ZuulCS
 
 			if (nextRoom == null) {
                 Console.WriteLine("");
-                Console.WriteLine("########################################################");
+                Console.WriteLine("10111110 11010000 11101000 00000111 11001001 11100001 ");
                 Console.WriteLine("");
-                Console.WriteLine("There is no door to "+direction+"!");
+                Console.WriteLine(" # There is no door to " + direction + "!");
                 Console.WriteLine("");
-                Console.WriteLine("########################################################");
+                Console.WriteLine("11111100 00010100 11000111 01000110 01100000 00001001 ");
                 Console.WriteLine("");
             } else {
 				player.currentRoom = nextRoom;
                 player.damage(1);
                 Console.WriteLine("");
-                Console.WriteLine("########################################################");
+                Console.WriteLine("11101100 00110011 01100110 00110010 01000111 01101010 ");
                 Console.WriteLine("");
-                Console.WriteLine(player.currentRoom.getLongDescription());
-                Console.WriteLine("you have " + player.getHealth + " health left");
+                Console.WriteLine(" # " + player.currentRoom.getLongDescription());
+                Console.WriteLine(" # you have " + player.getHealth + " health left");
                 Console.WriteLine("");
-                Console.WriteLine("########################################################");
+                Console.WriteLine("10111110 11010000 11101000 00000111 11001001 11100001 ");
                 Console.WriteLine("");
             }
 		}
